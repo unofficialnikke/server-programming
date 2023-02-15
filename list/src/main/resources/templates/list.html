@@ -1,0 +1,27 @@
+
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Server Programming with Spring Boot</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+
+<h3>Welcome to the Haaga-Helia!</h3>
+
+<tr th:each="student : ${studentlist}">
+
+<td><p th:text="'• ' + ${student.firstName} + ' ' + ${student.lastName}"></p></td>
+
+
+</tr>
+
+</body>
+
+</html>

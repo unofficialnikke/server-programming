@@ -1,0 +1,27 @@
+
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Server Programming with Spring Boot</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+
+<h1>Viestit</h1>
+
+<tr th:each="viesti : ${ruokalista}">
+
+<td><h3 th:text="${viesti.msg}"></h3></td>
+
+
+</tr>
+
+</body>
+
+</html>

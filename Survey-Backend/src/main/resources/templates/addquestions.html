@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Kysely</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<style>
+.container {
+	margin-top: 20px;
+}
+
+.otsikko {
+	margin-bottom: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.rivi {
+	border-radius: 15px;
+}
+
+.rivi:hover {
+	background-color: whitesmoke;
+}
+</style>
+</head>
+<body>
+	<p>
+		<a href="/">Etusivu</a>
+	<p>
+	<div class="container">
+
+		<input type="hidden" th:field="${survey.surveyId}">
+		<div style="display: flex; flex-direction:column; justify-content:space-between;">
+			<div class="otsikko">
+				<h3 th:text="${survey.surveyName}"></h3>
+				<p th:text="${survey.description}"></p>
+			</div>
+			<div style="float: right; display:flex; flex-direction:column;align-self:end;">
+				<p>
+					<a class="btn btn-primary"
+						th:href="@{/addquestion/{id}(id=${survey.surveyId})}">Lisää
+						kysymys</a>&nbsp;<a href="/allsurveys" class="btn btn-secondary">Palaa
+						kyselyihin</a>
+				</p>
+			</div>
+		</div>
+		<h4>Kysymykset:</h4>
+		<div class="container">
+			<ul class="rivi" th:each="q: ${survey.questions}">
+				<div
+					style="display: flex; flex-direction: row; justify-content: space-between;">
+					<li th:text="${q.name}"></li> <a
+						style="color: red; white-space: nowrap; border-radius: 15px;"
+						class="btn-sm  btn-outline-link"
+						th:href="@{/deletequestion/{id}(id=${q.id})} ">Poista kysymys</a>
+				</div>
+				<ul th:each="opt: ${q.options}">
+					<li th:text="${opt.name}"></li>
+				</ul>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

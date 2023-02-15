@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Kysely</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+<style>
+.container {
+	margin-top: 100px;
+}
+
+.otsikko {
+	margin-bottom: 50px;
+}
+</style>
+
+</head>
+<body>
+
+	<p>
+		<a href="/">Etusivu</a>
+	<p>
+	<div class="container">
+		<h2 class="otsikko" th:text="${survey.surveyName}"></h2>
+		<h6 class="kuvaus" th:text="${survey.description}"></h6>
+
+		<div id="tekstikysymys">
+			<form action="#"
+				th:action="@{/savequestion/{id}(id=${survey.surveyId})}"
+				th:object="${question}" method="post">
+				<div class="form-group">
+					<label for="question">Tyyppi</label> <select class="form-control"
+						th:field="*{type}">
+						<option value="TEXT">Tekstikysymys</option>
+						<option disabled value="CHECKBOX">Monivalintakysymys</option>
+						<option value="RADIO">Radio</option>
+					</select> <label for="question">Kysymys</label>
+					<textarea rows="1" class="form-control" th:field="*{name}"></textarea>
+				</div>
+				<input class="btn btn-success" type="submit" value="Lisää">
+			</form>
+		</div>
+
+<div>
+
+
+</div>
+	</div>
+
+
+</body>
+</html>

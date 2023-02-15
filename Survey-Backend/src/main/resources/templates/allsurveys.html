@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Kysely</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+
+<style>
+.container {
+	margin-top: 100px;
+}
+
+.otsikko {
+	margin-bottom: 50px;
+}
+
+#block {
+padding:10px;
+border-radius:15px;}
+
+#block:hover {
+background-color: whitesmoke;}
+</style>
+</head>
+<body>
+    <p>
+        <a href="/">Etusivu</a>
+    <p>
+    <div class="container">
+        <h2 class="otsikko">Kaikki kyselyt</h2>
+        <th:block  th:each="s: ${surveys}">
+            <p id='block'>
+                <a th:href=@{/addquestions/{id}(id=${s.surveyId})}
+                    th:text="${s.surveyName}"></a> &nbsp; <a
+                        style="float:right; color: red; white-space: nowrap; border-radius: 15px;"
+                        class="btn-sm  btn-outline-link"
+                        th:href="@{/deletesurvey/{id}(id=${s.surveyId})} ">Poista kysely</a>
+            </p>
+
+ 
+
+        </th:block>
+        <div>
+            <a href="/addsurvey" class="btn btn-success">Lisää kysely</a>
+            <a style="margin-left:15px;" href="/" class="btn btn-primary">Palaa valikkoon</a>
+        </div>
+    </div>
+</body>
+</html>
